@@ -12,6 +12,24 @@ class Request
     private $path;    
     private $method;
     
+    public function __construct() 
+    {
+        if(isset($_GET)) {
+            $this->method = 'get';
+        }
+        if(isset($_POST)) {
+            $this->method = 'post';
+        }
+        if(isset($_SERVER)) {
+            $this->method = 'server';
+        }
+        if(isset($_SESSIN)) {
+            $this->method = 'session';
+        }
+        //etc... methode lourde... à voir
+    }
+
+
     public function getPath()
     {
         return $this->path;
@@ -25,7 +43,7 @@ class Request
      */
     public function isMethod($test) 
     {
-        if($this->method == $test) {
+        if(strtoupper($this->method) == $test) {
             return true;
         }
         else {

@@ -6,7 +6,10 @@
  */
 class Controller 
 {
-    
+    public function render($view, array $parameters = array())
+    {
+        include "../src/Views/{$view}";
+    }
 }
 
 ?>
