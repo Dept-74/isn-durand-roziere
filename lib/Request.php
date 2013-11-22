@@ -23,7 +23,7 @@ class Request
         if(isset($_SERVER)) {
             $this->method = 'server';
         }
-        if(isset($_SESSIN)) {
+        if(isset($_SESSION)) {
             $this->method = 'session';
         }
         //etc... methode lourde... à voir
