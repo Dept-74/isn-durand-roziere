@@ -8,6 +8,10 @@ use lib\Response;
  */
 class Kernel
 {
+    /**
+     * Contient la map de routing
+     * @var Array Liste des routes
+     */
     private $routes;
     
     /**
