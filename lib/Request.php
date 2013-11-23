@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\Request;
+namespace lib;
 
 /**
  * Request se charge des requètes, à travailler
@@ -14,21 +14,11 @@ class Request
     
     public function __construct() 
     {
-        if(isset($_GET)) {
-            $this->method = 'get';
-        }
-        if(isset($_POST)) {
-            $this->method = 'post';
-        }
-        if(isset($_SERVER)) {
-            $this->method = 'server';
-        }
-        if(isset($_SESSION)) {
-            $this->method = 'session';
-        }
-        //etc... methode lourde... à voir
+        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->path = $_SERVER['REQUEST_URI'];
     }
-
+    
+    
 
     public function getPath()
     {
@@ -43,13 +33,25 @@ class Request
      */
     public function isMethod($test) 
     {
-        if(strtoupper($this->method) == $test) {
+        if(strtoupper($this->method) == strtoupper($test)) {
             return true;
         }
         else {
             return false;
         }
     }
+    
+    public function postHas($key)
+    {
+        return isset($_POST[$key]);
+    }
+    
+    public function getHas($key)
+    {
+        return isset($_GET[$key]);
+    }
+    
+    
     
 }
 
