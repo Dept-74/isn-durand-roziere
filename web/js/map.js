@@ -183,8 +183,10 @@ ZW: "M549.228,286.898l-1.416,-0.257l-0.901,0.386l-1.289,-0.513l-1.157,0l-1.673,-
 }};
 
 for(var pays in map.shapes)
-    {
-        editor.path(map.shapes[pays]);
-    }
+{
+    editor.path(map.shapes[pays]);
+}
+
+
 };
 

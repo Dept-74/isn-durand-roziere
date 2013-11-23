@@ -8,8 +8,16 @@ namespace lib;
  */
 class Response {
     
-    private $template;
+    private $content;
     
+    public function __construct($content) {
+        $this->content = $content;
+    }
+    
+    public function send()
+    {
+        exit($this->content);
+    }
     
 }
 
