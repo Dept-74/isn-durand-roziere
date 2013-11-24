@@ -4,11 +4,12 @@ namespace src\Models;
 
 /**
  * Description of Pays
- *
+ * L'id est le doublet de lettres officiel.
  * @author ROMAIN
  */
 class Pays 
 {
+    private $id;
     private $nom;
     private $points;
     private $votes;
@@ -43,6 +44,20 @@ class Pays
     
     /*Getters et Setters simples*/
     
+    /**
+     * getId
+     * @return varchar
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    
     public function getNom()
     {
         return $this->nom;
@@ -59,9 +74,32 @@ class Pays
         return $this->points;
     }
     
+    /**
+     * Réinitialise les points.
+     */
+    public function restartPoints()
+    {
+        $this->points = 0;
+    }
+    
+    /**
+     * Ajoute les points et incrémente les votes.
+     * @param type $nbrPoints
+     */
+    public function addPoints($nbrPoints)
+    {
+        $this->points = $this->points + $nbrPoints;
+        $this->votes = $this->votes + 1;
+    }
+    
     public function getVotes()
     {
         return $this->votes;
+    }
+    
+    public function setVotes($votes)
+    {
+        $this->votes = $votes;
     }
 }
 
