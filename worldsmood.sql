@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 24 Novembre 2013 à 18:38
+-- Généré le: Dim 24 Novembre 2013 à 19:09
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -34,6 +34,13 @@ CREATE TABLE IF NOT EXISTS `pays` (
   `points` int(11) NOT NULL,
   `votes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `pays`
+--
+
+INSERT INTO `pays` (`id`, `nom`, `points`, `votes`) VALUES
+('FR', 'France', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
