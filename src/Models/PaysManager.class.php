@@ -2,6 +2,8 @@
 
 namespace src\Models;
 
+use src\Models\Pays;
+
 /**
  * Le manager réduit le nombre de requètes SQL à une seule par chargement de la page.
  * Il s'occupe de renvoyer l'intégralité des valeurs de tous les pays.
@@ -31,9 +33,9 @@ class PaysManager {
         $pays = array();        
         $req = $this->_db->query('SELECT id, nom, points, votes FROM pays ORDER BY id');
         
-        while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
+        while ($donnees = $req->fetch())
         {
-            $pays[] = new Pays($donnees);
+            $pays[] = new Pays($donnees['id'],$donnees['nom'],$donnees['points'],$donnees['votes']);
         }
         return $pays;
     }
@@ -48,7 +50,7 @@ class PaysManager {
         $id = (int) $id;
         
         $req = $this->_db->query('SELECT id, nom, points, votes FROM pays WHERE id = '.$id);
-        $donnees = $req->fetch(PDO::FETCH_ASSOC);
+        $donnees = $req->fetch();
         
         return new Pays($donnees);
     }

@@ -14,8 +14,9 @@ class Pays
     private $points;
     private $votes;
     
-    public function __construct($nom,$points,$votes)
+    public function __construct($id, $nom, $points, $votes)
     {
+        $this->id = $id;
         $this->nom = $nom;
         $this->points = $points;
         $this->votes = $votes;
