@@ -37,7 +37,7 @@
         <div class="container">
 
             <div class="starter-template">
-                <div class="header"><h1>What's the world's mood today ?</h1></div>
+                <div class="header"><h1 style="color: <?php echo $color; ?>" >What's the world's mood today ?</h1></div>
 
                 <div id="map">
 
