@@ -35,7 +35,7 @@ class Kernel
     {
         $this->request = $request;
         
-        $controller = $this->getController();    
+        $controller = $this->getController();
        
         
         $response = $controller['controller']->execute($this->request, $controller['action']);     

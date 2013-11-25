@@ -12,22 +12,23 @@ class DefaultController extends Controller
         //Attention zone de test ! :D
         //Et oublie pas d'importer le SQL le ben ;)
         
-        $bdd = new \PDO('mysql:host=localhost;dbname=worldsmood', 'root', '');
-        
-        /* $france = new Pays('FR','France',0,0);
-        $france->restartPoints();
-        $france->setVotes(0);
-        
-        $em = new PaysManager($bdd);
-        $em->add($france); */
+        $bdd = new \PDO('mysql:host=localhost;dbname=worldsmood', 'root', '');       
         
         $em = new PaysManager($bdd);
         $pays = $em->findAll();
         
-        var_dump($pays);
+        $jsArray = "var coulours = { \n";
+        
+        foreach($pays as $p)
+        {
+            $jsArray .= $p->getId().": \"".$p->generateHEX()."\", \n";
+        }
+        $jsArray .= "};";
+        
+        var_dump($jsArray);
         
         return $this->render('Default:map.php', array(
-            
+            'jsArray' => $jsArray,
         ));
     }
 }

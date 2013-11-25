@@ -7,7 +7,7 @@ namespace src\Models;
  * L'id est le doublet de lettres officiel.
  * @author ROMAIN
  */
-class Pays 
+class Pays
 {
     private $id;
     private $nom;
@@ -25,6 +25,8 @@ class Pays
     public function generateHEX()
     {        
         // $mood s'étend de -2 à 2
+        // BugBug : Division par 0 non gérée
+        // Renvoyer du gris clair si pas de votes
         $mood = ($this->points)/($this->votes);
         $b = 64;
         
@@ -43,7 +45,7 @@ class Pays
     }
     
     
-    /*Getters et Setters simples*/
+    /* Getters et Setters */
     
     /**
      * getId
