@@ -73,6 +73,11 @@ class Request
         return isset($_GET[$key]);
     }
     
+    public function getPostData($key)
+    {
+        return $_POST[$key];
+    }
+    
     
     
 }

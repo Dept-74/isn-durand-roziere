@@ -6,8 +6,55 @@
 
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen">
 
+        <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
         <script type="text/javascript" src="js/libs/raphael-min.js"></script>
         <script type="text/javascript" src="js/map.js"></script>
+        
+
+        <script type="text/javascript">             
+             
+        <?php echo $jsArray ?>             
+
+            jQuery(function($) {
+                var r = Raphael(document.getElementById('map'), 1000, 1000);
+                r.safari();
+                
+              
+                
+                attributes = {
+                    fill: '#CC3300', //Couleur de base (remplacée par la valeur dyn)
+                    stroke: '#FFFFFF',
+                    'stroke-width': 0.5,
+                    'stroke-linejoin': 'round',
+                    'cursor': "pointer"
+                },
+                arr = new Array();
+                for (var country in map.shapes) {
+                    var obj = r.path(map.shapes[country]);
+                    arr[obj.id] = country;
+                    obj.attr(attributes);
+                    obj.attr({fill: coulours[country]});
+                    
+                    //Envoi des pts
+                    obj.click(function() {
+                        var pts = prompt("Humeur en "+arr[this.id],"");
+                        if(pts === null)
+                            {
+                            return;
+                            }
+                             $.post("/app.php/add-vote", {id: arr[this.id], pts: pts}).done(function() {
+                                 $(location).attr('href',"/");
+                                //alert("Ajouté : " + arr[this.id] + " / " + pts);
+                             });
+                    });
+                }
+            });
+            
+            jQuery.expr[':'].raph = function (objNode, intStackIndex, arrProperties, arrNodeStack) {
+                var c = objNode.getAttribute('class');
+                return(c && c.indexOf(arrProperties[3]) != -1);
+            };
+        </script>
     </head>
     <body>
         <style>

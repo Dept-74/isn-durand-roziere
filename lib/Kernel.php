@@ -32,6 +32,10 @@ class Kernel
                 '/generate_bdd',
                 'Default:generate',
             ),
+            'add_vote' => array(
+                '/add-vote',
+                'Default:add',
+            ),
         );      
     }
     

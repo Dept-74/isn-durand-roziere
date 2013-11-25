@@ -49,16 +49,14 @@ class PaysManager {
     /**
      * Pour les statistiques d'un pays en particulier
      * Ientification par Id
-     * @param int $id
+     * @param string $id
      */
     public function findById($id)
-    {
-        $id = (int) $id;
-        
-        $req = $this->_db->query('SELECT id, nom, points, votes FROM pays WHERE id = '.$id);
+    {       
+        $req = $this->_db->query('SELECT id, nom, points, votes FROM pays WHERE id = "'.$id.'"');
         $donnees = $req->fetch();
         
-        return new Pays($donnees);
+        return new Pays($donnees['id'],$donnees['nom'],$donnees['points'],$donnees['votes']);
     }
     
     /**
@@ -77,8 +75,8 @@ class PaysManager {
     }
     
     public function update(Pays $pays)
-    {
-        $req = $this->_db->prepare('UPDATE pays SET id = :id, nom = :nom, points = :points, votes = :votes');
+    {        
+        $req = $this->_db->prepare('UPDATE pays SET id = :id, nom = :nom, points = :points, votes = :votes WHERE id = :id');
         $req->execute(array(
             'id' => $pays->getId(),
             'nom' => $pays->getNom(),

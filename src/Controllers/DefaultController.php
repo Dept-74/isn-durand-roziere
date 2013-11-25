@@ -1,5 +1,12 @@
 <?php
+/**
+ * Controleur par défaut
+ * Ben : Faudra virer les dp pas beaux (comme les appels bdd multiples)
+ * Mais bon on fera ça en vf, pour la maquette ça passe...
+ */
 namespace src\Controllers;
+
+
 
 use lib\Controller;
 use src\Models\Pays;
@@ -26,11 +33,32 @@ class DefaultController extends Controller
         }
         $jsArray .= "};";
         
-        var_dump($jsArray);
+       // var_dump($jsArray);
         
         return $this->render('Default:map.php', array(
             'jsArray' => $jsArray,
         ));
+    }
+    
+    public function addAction()
+    {
+        $request = $this->getRequest();
+        
+        if (!$request->isMethod('POST'))
+        {
+            return new Response(403);
+        }
+        
+        $pm = new PaysManager(new \PDO('mysql:host=localhost;dbname=worldsmood', 'root', ''));
+        
+        $pays = $pm->findById($request->getPostData('id'));
+        var_dump($pays);
+        $pays->addPoints($request->getPostData('pts'));
+        
+        $pm->update($pays);
+        
+        return new Response(200);
+        
     }
     
     public function generateAction()

@@ -28,7 +28,7 @@ class Pays
         // $mood s'étend de -2 à 2
         // BugBug : Division par 0 non gérée
         // Renvoyer du gris clair si pas de votes
-        if($this->votes != 0) {
+        if($this->votes != 0 && $this->points != 0) {
             $mood = ($this->points)/($this->votes);
                 
             if($mood < 0) {
