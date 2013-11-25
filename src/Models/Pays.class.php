@@ -65,6 +65,7 @@ class Pays
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
     
     public function getNom()
@@ -109,6 +110,7 @@ class Pays
     public function setVotes($votes)
     {
         $this->votes = $votes;
+        return $this;
     }
 }
 
