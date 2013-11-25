@@ -28,6 +28,10 @@ class Kernel
                 '/',
                 'Default:index',
             ),
+            'generate_bdd' => array(
+                '/generate_bdd',
+                'Default:generate',
+            ),
         );      
     }
     

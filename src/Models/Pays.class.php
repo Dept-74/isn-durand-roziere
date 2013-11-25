@@ -13,6 +13,7 @@ class Pays
     private $nom;
     private $points;
     private $votes;
+    const B = 64;
     
     public function __construct($id, $nom, $points, $votes)
     {
@@ -27,19 +28,24 @@ class Pays
         // $mood s'étend de -2 à 2
         // BugBug : Division par 0 non gérée
         // Renvoyer du gris clair si pas de votes
-        $mood = ($this->points)/($this->votes);
-        $b = 64;
-        
-        if($mood <= 0) {
-            $r = 164;
-            $v = 50 * $mood + 164;
+        if($this->votes != 0) {
+            $mood = ($this->points)/($this->votes);
+                
+            if($mood < 0) {
+                $r = 164;
+                $v = 50 * $mood + 164;
+            }
+            if($mood > 0) {
+                $v = 164;
+                $r = -50 * $mood + 164;
+            }
         }
-        if($mood > 0) {
-            $v = 164;
-            $r = -50 * $mood + 164;
+        else { //$mood != 0
+            $r = $v = $b = 67;
         }
+            
         
-        $hex = '#'.\dechex($r).\dechex($v).\dechex($b);
+        $hex = '#'.\dechex($r).\dechex($v).\dechex(self::B);
         
         return $hex;
     }
